@@ -1,0 +1,65 @@
+.recipe {
+  background: #fff;
+  border-radius: 5px;
+  padding: 1rem;
+
+  i {
+    font-size: 1.5rem;
+    margin: 0.3rem;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 500px;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+
+  &__title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    transition: color 0.3s;
+    text-align: center;
+    height: 60px;
+
+    &:hover {
+      color: #eb593c;
+    }
+  }
+
+  &__image {
+    height: 370px;
+
+    img {
+      border-radius: 5px;
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+  }
+
+  &__info {
+    margin-top: 1rem;
+    display: flex;
+
+    div {
+      margin: 0 0.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  &__instructions {
+    display: flex;
+    margin: 1rem 0;
+    font-size: 1.2rem;
+  }
+}

@@ -1,0 +1,12 @@
+.link {
+  color: #abdcd6;
+  text-decoration: none;
+  font-size: 1.5rem;
+  margin: 0 1rem;
+  transition: 0.3s;
+
+  &:hover {
+    transform: scale(1.1);
+    color: #eb593c;
+  }
+}
