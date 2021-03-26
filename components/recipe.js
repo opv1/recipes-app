@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import styles from '../styles/recipe.module.scss'
 
@@ -7,6 +7,10 @@ const RecipeComponent = ({ data }) => {
   const [recipe, setRecipe] = useState(data)
   const route = useRouter()
   const recipePage = new URLSearchParams(route.route).has('/recipes/[id]')
+
+  useEffect(() => {
+    setRecipe(data)
+  }, [data])
 
   return (
     <div className={styles.recipe}>
