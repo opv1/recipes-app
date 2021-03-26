@@ -2,6 +2,7 @@
   background: #fff;
   border-radius: 5px;
   padding: 1rem;
+  margin-bottom: 1rem;
 
   i {
     font-size: 1.5rem;
@@ -16,17 +17,12 @@
     max-width: 500px;
   }
 
-  &:not(:last-child) {
-    margin-bottom: 1rem;
-  }
-
   &__title {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
     cursor: pointer;
     transition: color 0.3s;
     text-align: center;
-    height: 60px;
 
     &:hover {
       color: #eb593c;

@@ -12,7 +12,7 @@ const getRandomRecipe = async () => {
 const HomePage = ({ data }) => {
   const [currentRecipe, setCurrentRecipe] = useState(data)
 
-  const handlerClick = async () => {
+  const refreshRecipe = async () => {
     const data = await getRandomRecipe()
     setCurrentRecipe(data)
   }
@@ -20,8 +20,8 @@ const HomePage = ({ data }) => {
   return (
     <MainComponent page={'Home'}>
       <h1>Random Recipe</h1>
-      <RecipeComponent recipe={currentRecipe} />
-      <button onClick={handlerClick}>Refresh</button>
+      <RecipeComponent data={currentRecipe} />
+      <button onClick={refreshRecipe}>Refresh</button>
     </MainComponent>
   )
 }

@@ -1,8 +1,10 @@
 import { useRouter } from 'next/router'
+import { useState } from 'react'
 import Link from 'next/link'
 import styles from '../styles/recipe.module.scss'
 
-const RecipeComponent = ({ recipe }) => {
+const RecipeComponent = ({ data }) => {
+  const [recipe, setRecipe] = useState(data)
   const route = useRouter()
   const recipePage = new URLSearchParams(route.route).has('/recipes/[id]')
 
@@ -13,7 +15,7 @@ const RecipeComponent = ({ recipe }) => {
           <span className={styles.recipe__title}>{recipe.title}</span>
         </Link>
         <div className={styles.recipe__image}>
-          <img src={recipe.image} alt='image' />
+          <img src={recipe.image || '/noImage.jpg'} alt='image' />
         </div>
         {recipePage ? (
           <>

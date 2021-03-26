@@ -9,7 +9,7 @@ const RecipePage = ({ data }) => {
   return (
     <MainComponent page={'Recipe'}>
       <h1>Recipe Information</h1>
-      <RecipeComponent recipe={recipe} />
+      <RecipeComponent data={recipe} />
     </MainComponent>
   )
 }
