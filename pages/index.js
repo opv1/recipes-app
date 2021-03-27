@@ -18,7 +18,7 @@ const HomePage = ({ data }) => {
   }
 
   return (
-    <MainComponent page={'Home'}>
+    <MainComponent page={'Home'} keywords='Random Recipe'>
       <h1>Random Recipe</h1>
       <RecipeComponent data={currentRecipe} />
       <button onClick={refreshRecipe}>Refresh</button>

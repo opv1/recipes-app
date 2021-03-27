@@ -5,12 +5,10 @@ import styles from '../styles/recipe.module.scss'
 
 const RecipeComponent = ({ data }) => {
   const [recipe, setRecipe] = useState(data)
-  const route = useRouter()
-  const recipePage = new URLSearchParams(route.route).has('/recipes/[id]')
+  const path = useRouter()
+  const recipePage = new URLSearchParams(path.route).has('/recipes/[id]')
 
-  useEffect(() => {
-    setRecipe(data)
-  }, [data])
+  useEffect(() => setRecipe(data), [data])
 
   return (
     <div className={styles.recipe}>

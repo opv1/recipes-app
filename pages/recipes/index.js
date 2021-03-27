@@ -21,7 +21,7 @@ const RecipesPage = ({ data }) => {
   }
 
   return (
-    <MainComponent page={'Recipes'}>
+    <MainComponent page={'List'} keywords='Recipe List'>
       <h1>Recipe List</h1>
       <div>
         {recipes.map((recipe) => (

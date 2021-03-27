@@ -7,7 +7,7 @@ const RecipePage = ({ data }) => {
   const [recipe] = useState(data)
 
   return (
-    <MainComponent page={'Recipe'}>
+    <MainComponent page={'Recipe'} keywords='Recipe Information'>
       <h1>Recipe Information</h1>
       <RecipeComponent data={recipe} />
     </MainComponent>
