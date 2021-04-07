@@ -1,6 +1,57 @@
 .header {
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 1.5rem 0;
+  justify-content: space-between;
+  padding: 1.5rem;
+
+  &__brand {
+    border-radius: 50%;
+    padding: 0.5rem;
+    font-family: 'Lobster', cursive;
+    font-size: 2rem;
+    text-decoration: none;
+    color: #fff;
+    background: #e41749;
+    transform: scale(0.9);
+    transition: transform 0.3s;
+
+    &:hover {
+      transform: scale(1);
+    }
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+
+    &:not(:last-child) {
+      margin-right: 0.5rem;
+    }
+  }
+
+  &__link {
+    border-radius: 10%;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: #313131;
+    transition: background 0.3s;
+
+    &_active {
+      color: #fff;
+      background: #ff8a5c;
+    }
+
+    &:hover {
+      background: rgba(78, 77, 77, 0.253);
+    }
+  }
 }

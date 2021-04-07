@@ -1,12 +1,12 @@
 .recipe {
-  background: #fff;
+  margin-bottom: 1rem;
   border-radius: 5px;
   padding: 1rem;
-  margin-bottom: 1rem;
+  background: #fff;
 
   i {
-    font-size: 1.5rem;
     margin: 0.3rem;
+    font-size: 1.5rem;
   }
 
   &__container {
@@ -18,11 +18,11 @@
   }
 
   &__title {
-    font-size: 1.5rem;
     margin-bottom: 0.5rem;
-    cursor: pointer;
-    transition: color 0.3s;
+    font-size: 1.5rem;
     text-align: center;
+    transition: color 0.3s;
+    cursor: pointer;
 
     &:hover {
       color: #eb593c;
@@ -33,23 +33,23 @@
     height: 370px;
 
     img {
+      display: block;
       border-radius: 5px;
       width: 100%;
       height: 100%;
-      display: block;
       object-fit: cover;
     }
   }
 
   &__info {
-    margin-top: 1rem;
     display: flex;
+    margin-top: 1rem;
 
     div {
-      margin: 0 0.5rem;
       display: flex;
       flex-direction: column;
       align-items: center;
+      margin: 0 0.5rem;
     }
   }
 

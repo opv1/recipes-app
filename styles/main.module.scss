@@ -2,21 +2,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  height: calc(100vh - 76px);
 
   h1 {
-    color: #abdcd6;
+    color: #313131;
   }
 
   button {
-    cursor: pointer;
-    border: none;
     outline: none;
-    background: #eb593c;
-    color: #fff;
-    padding: 1rem;
+    border: none;
     border-radius: 5px;
+    padding: 1rem;
+    color: #fff;
+    background: #eb593c;
     transition: color 0.3s;
+    cursor: pointer;
 
     &:hover {
       color: #abdcd6;

@@ -5,7 +5,7 @@
 
 ## Description
 
-Stack: Next.js
+Stack: Next
 
 ## [See the project](https://recipes-app-six.vercel.app/)
 

@@ -1,11 +1,14 @@
-import LinkComponent from '../components/link'
+import Link from 'next/link'
+import styles from '../styles/notfound.module.scss'
 
 const ErrorPage = () => {
   return (
-    <>
-      <h1 className=''>Error 404</h1>
-      <LinkComponent href='/' text='Go Home' />
-    </>
+    <div className={styles.notfound}>
+      <h1>Error 404</h1>
+      <Link href='/'>
+        <a>Go Home</a>
+      </Link>
+    </div>
   )
 }
 
