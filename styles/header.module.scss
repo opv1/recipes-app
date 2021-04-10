@@ -12,11 +12,10 @@
     text-decoration: none;
     color: #fff;
     background: #e41749;
-    transform: scale(0.9);
-    transition: transform 0.3s;
+    transition: border-radius 0.3s;
 
     &:hover {
-      transform: scale(1);
+      border-radius: 10%;
     }
   }
 

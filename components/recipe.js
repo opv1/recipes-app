@@ -1,30 +1,63 @@
-import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useRouter } from 'next/router'
 import Link from 'next/link'
+import { addFavorite, deleteFavorite } from '../store/actions/appActions'
 import styles from '../styles/recipe.module.scss'
 
 const RecipeComponent = ({ data }) => {
+  const dispatch = useDispatch()
+  const { favorites } = useSelector((state) => state.app)
   const [recipe, setRecipe] = useState(data)
+  const [favorite, setFavorite] = useState(false)
   const path = useRouter()
   const recipePage = new URLSearchParams(path.route).has('/recipes/[id]')
 
-  useEffect(() => setRecipe(data), [data])
+  const addInFavorite = (recipe) => {
+    setFavorite(true)
+    dispatch(addFavorite(recipe))
+  }
+
+  const removeFromFavorite = (recipe) => {
+    setFavorite(false)
+    dispatch(deleteFavorite(recipe))
+  }
+
+  useEffect(() => {
+    favorites.forEach((recipe) => {
+      if (recipe.id === data.id) {
+        setFavorite(true)
+      }
+    })
+
+    setRecipe(data)
+  }, [data])
 
   return (
     <div className={styles.recipe}>
       <div className={styles.recipe__container}>
         <Link href={`/recipes/${recipe.id}`}>
-          <span className={styles.recipe__title}>{recipe.title}</span>
+          <div className={styles.recipe__title}>
+            <span>{recipe.title}</span>
+          </div>
         </Link>
         <div className={styles.recipe__image}>
           <img src={recipe.image || '/noImage.jpg'} alt='image' />
+          {favorite ? (
+            <i
+              className='fas fa-star'
+              onClick={() => removeFromFavorite(recipe)}
+            />
+          ) : (
+            <i className='far fa-star' onClick={() => addInFavorite(recipe)} />
+          )}
         </div>
         {recipePage ? (
           <>
             <div className={styles.recipe__info}>
               <div>
                 <i className='fas fa-stopwatch'></i>
-                <span>ready in {recipe.readyInMinutes} minutes</span>
+                <span>Ready in {recipe.readyInMinutes} minutes</span>
               </div>
               <div>
                 <i className='fas fa-heart'></i>

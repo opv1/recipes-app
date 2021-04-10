@@ -20,6 +20,5 @@ export async function getServerSideProps({ params }) {
   const res = await requestFetch(
     `https://api.spoonacular.com/recipes/${params.id}/information?`
   )
-
   return { props: { data: res } }
 }

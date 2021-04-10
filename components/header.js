@@ -12,17 +12,17 @@ const HeaderComponent = () => {
         <li className={styles.header__item}>
           <ActiveLink
             activeClassName={styles.header__link_active}
-            href='/favorites'
+            href='/recipes'
           >
-            <a className={styles.header__link}>Favorites</a>
+            <a className={styles.header__link}>List</a>
           </ActiveLink>
         </li>
         <li className={styles.header__item}>
           <ActiveLink
             activeClassName={styles.header__link_active}
-            href='/recipes'
+            href='/favorites'
           >
-            <a className={styles.header__link}>Recipes</a>
+            <a className={styles.header__link}>Favorites</a>
           </ActiveLink>
         </li>
         <li className={styles.header__item}>

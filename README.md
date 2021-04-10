@@ -5,12 +5,6 @@
 
 ## Description
 
-Stack: Next
+Stack: Next + Redux
 
-## [See the project](https://recipes-app-six.vercel.app/)
-
-## Setup
-
-```
-npm run dev
-```
+## [See the project](https://recipes-app-six.vercel.app)

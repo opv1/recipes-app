@@ -1,0 +1,6 @@
+export const SET_LOADING = 'SET_LOADING'
+export const SET_ERROR = 'SET_ERROR'
+export const SET_FAVORITES = 'SET_FAVORITES'
+export const ADD_FAVORITE = 'ADD_FAVORITE'
+export const DELETE_FAVORITE = 'DELETE_FAVORITE'
+export const SET_FOUND_RECIPES = 'SET_FOUND_RECIPES'

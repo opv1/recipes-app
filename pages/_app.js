@@ -1,13 +1,23 @@
-import { Provider } from 'react-redux'
+import { useEffect } from 'react'
+import { Provider, useDispatch } from 'react-redux'
 import { createWrapper } from 'next-redux-wrapper'
 import NextNprogress from 'nextjs-progressbar'
 import { store } from '../store/index'
+import { favoritesRecipes } from '../store/actions/appActions'
+import { getStorage } from '../utils/localStorage'
 import '../styles/globals.scss'
 
 const makeStore = () => store
 const wrapper = createWrapper(makeStore)
 
 function MyApp({ Component, pageProps }) {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    const data = getStorage()
+    dispatch(favoritesRecipes(data))
+  }, [])
+
   return (
     <Provider store={store}>
       <Component {...pageProps} />
