@@ -1,11 +1,7 @@
 import styles from '../styles/message.module.scss'
 
 const Message = ({ message }) => {
-  return (
-    <div className={styles.message}>
-      <h3>{message}</h3>
-    </div>
-  )
+  return <h3 className={styles.message}>{message}</h3>
 }
 
 export default Message

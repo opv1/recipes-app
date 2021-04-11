@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { addFavorite, deleteFavorite } from '../store/actions/appActions'
 import styles from '../styles/recipe.module.scss'
 
-const RecipeComponent = ({ data }) => {
+const Recipe = ({ data }) => {
   const dispatch = useDispatch()
   const { favorites } = useSelector((state) => state.app)
   const [recipe, setRecipe] = useState(data)
@@ -88,4 +88,4 @@ const RecipeComponent = ({ data }) => {
   )
 }
 
-export default RecipeComponent
+export default Recipe

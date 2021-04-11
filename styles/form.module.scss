@@ -1,9 +1,13 @@
 .form {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  width: 60%;
+  justify-content: center;
+  margin: 0.5rem;
+  width: 100%;
 
   input {
+    margin: 0.5rem;
     outline: none;
     border: 1px solid #eee;
     border-radius: 10px;
@@ -14,17 +18,24 @@
     &:focus {
       background: #f3f3f2;
     }
+
+    &[type='text'] {
+      min-width: 150px;
+      max-width: 250px;
+    }
+
+    &[type='number'] {
+      width: 150px;
+    }
   }
 
   &__block {
     display: flex;
     align-items: center;
-    width: 150px;
-    margin-left: 1rem;
   }
 
   button {
-    margin-left: 1rem;
+    margin: 0.5rem;
     outline: none;
     border: none;
     border-radius: 5px;

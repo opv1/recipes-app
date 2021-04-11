@@ -1,11 +1,12 @@
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { searchRecipes } from '../store/actions/appActions'
 import styles from '../styles/form.module.scss'
 
 const Form = () => {
-  const [form, setForm] = useState({ query: '', quantity: '1' })
   const dispatch = useDispatch()
+  const { loading } = useSelector((state) => state.app)
+  const [form, setForm] = useState({ query: '', quantity: '1' })
 
   const handlerChange = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value })
@@ -25,19 +26,17 @@ const Form = () => {
         value={form.query}
         placeholder='Suggest possible recipe names'
       />
-      <div className={styles.form__block}>
-        <input
-          onChange={handlerChange}
-          type='number'
-          name='quantity'
-          value={form.quantity}
-          min='1'
-          max='25'
-          placeholder='Quantity'
-          required
-        />
-      </div>
-      <button onClick={handlerClick} disabled={!form.query}>
+      <input
+        onChange={handlerChange}
+        type='number'
+        name='quantity'
+        value={form.quantity}
+        min='1'
+        max='25'
+        placeholder='Quantity'
+        required
+      />
+      <button onClick={handlerClick} disabled={!form.query || loading}>
         Search
       </button>
     </form>

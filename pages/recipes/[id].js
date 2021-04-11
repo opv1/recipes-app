@@ -1,16 +1,19 @@
 import { useState } from 'react'
-import MainComponent from '../../components/main'
-import RecipeComponent from '../../components/recipe'
+import Main from '../../components/main'
+import Recipe from '../../components/recipe'
 import { requestFetch } from '../../utils/requestFetch'
 
 const RecipePage = ({ data }) => {
   const [recipe] = useState(data)
 
   return (
-    <MainComponent page={'Recipe'} keywords='Recipe Information'>
-      <h1>Recipe Information</h1>
-      <RecipeComponent data={recipe} />
-    </MainComponent>
+    <Main
+      page={'Recipe'}
+      keywords='recipe information'
+      title='recipe information'
+    >
+      <Recipe data={recipe} />
+    </Main>
   )
 }
 

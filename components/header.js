@@ -2,7 +2,7 @@ import Link from 'next/link'
 import ActiveLink from './link'
 import styles from '../styles/header.module.scss'
 
-const HeaderComponent = () => {
+const Header = () => {
   return (
     <header className={styles.header}>
       <Link href='/'>
@@ -38,4 +38,4 @@ const HeaderComponent = () => {
   )
 }
 
-export default HeaderComponent
+export default Header

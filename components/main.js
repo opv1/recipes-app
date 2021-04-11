@@ -1,8 +1,8 @@
 import Head from 'next/head'
-import HeaderComponent from './header'
+import Header from './header'
 import styles from '../styles/main.module.scss'
 
-const MainComponent = ({ page, keywords, children }) => {
+const Main = ({ page, keywords, title, children }) => {
   return (
     <>
       <Head>
@@ -25,10 +25,15 @@ const MainComponent = ({ page, keywords, children }) => {
         />
         <title>Recipes | {page}</title>
       </Head>
-      <HeaderComponent />
-      <main className={styles.main}>{children}</main>
+      <Header />
+      <main className={styles.main}>
+        <section className={styles.main__container}>
+          <h1 className={styles.main__title}>{title}</h1>
+          {children}
+        </section>
+      </main>
     </>
   )
 }
 
-export default MainComponent
+export default Main

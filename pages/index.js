@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setLoading } from '../store/actionCreators/app'
-import MainComponent from '../components/main'
-import RecipeComponent from '../components/recipe'
+import Main from '../components/main'
+import Loader from '../components/loader'
+import Recipe from '../components/recipe'
 import { requestFetch } from '../utils/requestFetch'
-import styles from '../styles/main.module.scss'
 
 const getRandomRecipe = async () => {
   try {
@@ -19,6 +19,7 @@ const getRandomRecipe = async () => {
 
 const HomePage = ({ data }) => {
   const dispatch = useDispatch()
+  const { loading } = useSelector((state) => state.app)
   const [currentRecipe, setCurrentRecipe] = useState(data)
 
   const refreshRecipe = async () => {
@@ -35,15 +36,16 @@ const HomePage = ({ data }) => {
   }
 
   return (
-    <MainComponent page={'Home'} keywords='Random Recipe'>
-      <div className={styles.main__container}>
-        <h1 className={styles.main__title}>Random Recipe</h1>
-        <RecipeComponent data={currentRecipe} />
-        <button className={styles.main__button} onClick={refreshRecipe}>
-          Refresh
-        </button>
-      </div>
-    </MainComponent>
+    <Main page={'Home'} keywords='random recipe' title='random recipe'>
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <Recipe data={currentRecipe} />
+          <button onClick={refreshRecipe}>Refresh</button>
+        </>
+      )}
+    </Main>
   )
 }
 
