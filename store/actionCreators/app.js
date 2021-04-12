@@ -1,7 +1,7 @@
 import {
   SET_LOADING,
-  SET_ERROR,
-  SET_FAVORITES,
+  SET_MESSAGE,
+  SET_FAVORITE_RECIPES,
   SET_FOUND_RECIPES,
 } from '../types'
 
@@ -9,13 +9,13 @@ export const setLoading = () => ({
   type: SET_LOADING,
 })
 
-export const setError = (error) => ({
-  type: SET_ERROR,
-  payload: error,
+export const setMessage = (message) => ({
+  type: SET_MESSAGE,
+  payload: message,
 })
 
-export const setFavorites = (recipes) => ({
-  type: SET_FAVORITES,
+export const setFavoriteRecipes = (recipes) => ({
+  type: SET_FAVORITE_RECIPES,
   payload: recipes,
 })
 

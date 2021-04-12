@@ -5,7 +5,7 @@ import Recipe from '../components/recipe'
 import Message from '../components/message'
 
 const Favorites = () => {
-  const { favorites } = useSelector((state) => state.app)
+  const { favoriteRecipes } = useSelector((state) => state.app)
 
   return (
     <Main
@@ -13,9 +13,9 @@ const Favorites = () => {
       keywords='favorite recipes'
       title='favorite recipes'
     >
-      {favorites.length !== 0 ? (
+      {favoriteRecipes.length !== 0 ? (
         <List row={true}>
-          {favorites.map((recipe) => (
+          {favoriteRecipes.map((recipe) => (
             <Recipe key={recipe.id} data={recipe} />
           ))}
         </List>

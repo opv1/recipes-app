@@ -1,38 +1,19 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setLoading } from '../store/actionCreators/app'
+import { refreshRecipe } from '../store/actions/appActions'
 import Main from '../components/main'
 import Loader from '../components/loader'
 import Recipe from '../components/recipe'
-import { requestFetch } from '../utils/requestFetch'
+import { getRandomRecipe } from '../utils/requestFetch'
 
-const getRandomRecipe = async () => {
-  try {
-    const data = await requestFetch(
-      `https://api.spoonacular.com/recipes/random?`
-    )
-    return data.recipes[0]
-  } catch (err) {
-    console.log(err)
-  }
-}
-
-const HomePage = ({ data }) => {
+const HomePage = ({ serverData }) => {
   const dispatch = useDispatch()
   const { loading } = useSelector((state) => state.app)
-  const [currentRecipe, setCurrentRecipe] = useState(data)
+  const [currentRecipe, setCurrentRecipe] = useState(serverData)
 
-  const refreshRecipe = async () => {
-    try {
-      dispatch(setLoading())
-
-      const data = await getRandomRecipe()
-      setCurrentRecipe(data)
-    } catch (err) {
-      console.log(err)
-    } finally {
-      dispatch(setLoading())
-    }
+  const onRefreshRecipe = async () => {
+    const recipe = await dispatch(refreshRecipe())
+    setCurrentRecipe(recipe)
   }
 
   return (
@@ -42,7 +23,9 @@ const HomePage = ({ data }) => {
       ) : (
         <>
           <Recipe data={currentRecipe} />
-          <button onClick={refreshRecipe}>Refresh</button>
+          <button onClick={onRefreshRecipe} disabled={loading}>
+            Refresh
+          </button>
         </>
       )}
     </Main>
@@ -53,5 +36,5 @@ export default HomePage
 
 export async function getStaticProps(context) {
   const data = await getRandomRecipe()
-  return { props: { data } }
+  return { props: { serverData: data } }
 }

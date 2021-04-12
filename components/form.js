@@ -12,7 +12,7 @@ const Form = () => {
     setForm({ ...form, [event.target.name]: event.target.value })
   }
 
-  const handlerClick = (event) => {
+  const onSearchRecipes = (event) => {
     event.preventDefault()
     dispatch(searchRecipes(form))
   }
@@ -20,6 +20,7 @@ const Form = () => {
   return (
     <form className={styles.form}>
       <input
+        className={styles.form__input}
         onChange={handlerChange}
         type='text'
         name='query'
@@ -27,6 +28,7 @@ const Form = () => {
         placeholder='Suggest possible recipe names'
       />
       <input
+        className={styles.form__input}
         onChange={handlerChange}
         type='number'
         name='quantity'
@@ -36,7 +38,11 @@ const Form = () => {
         placeholder='Quantity'
         required
       />
-      <button onClick={handlerClick} disabled={!form.query || loading}>
+      <button
+        className={styles.form__button}
+        onClick={onSearchRecipes}
+        disabled={!form.query || loading}
+      >
         Search
       </button>
     </form>

@@ -1,52 +1,85 @@
 import { store } from '../index'
 import {
-  setFavorites,
-  setFoundRecipes,
   setLoading,
+  setMessage,
+  setFavoriteRecipes,
+  setFoundRecipes,
 } from '../actionCreators/app'
 import { setStorage } from '../../utils/localStorage'
-import { requestFetch } from '../../utils/requestFetch'
+import {
+  getRandomRecipe,
+  getRecipeList,
+  getFoundRecipes,
+  getRecipeInfo,
+} from '../../utils/requestFetch'
 
-export const favoritesRecipes = (recipes) => (dispatch) => {
-  dispatch(setFavorites(recipes))
+export const refreshRecipe = () => async (dispatch) => {
+  try {
+    dispatch(setLoading())
+
+    const data = await getRandomRecipe()
+
+    return data
+  } catch (err) {
+    dispatch(setMessage(err.message))
+  } finally {
+    dispatch(setLoading())
+  }
 }
 
-export const addFavorite = (recipe) => (dispatch) => {
-  const { favorites } = store.getState().app
+export const newRecipes = () => async (dispatch) => {
+  try {
+    dispatch(setLoading())
 
-  const recipes = [...favorites, recipe]
+    const data = await getRecipeList(5)
+
+    return data
+  } catch (err) {
+    dispatch(setMessage(err.message))
+  } finally {
+    dispatch(setLoading())
+  }
+}
+
+export const selectedRecipes = (recipes) => (dispatch) => {
+  dispatch(setFavoriteRecipes(recipes))
+}
+
+export const addFavoriteRecipe = (recipe) => (dispatch) => {
+  const { favoriteRecipes } = store.getState().app
+
+  const recipes = [...favoriteRecipes, recipe]
 
   setStorage(recipes)
 
-  dispatch(setFavorites(recipes))
+  dispatch(setFavoriteRecipes(recipes))
 }
 
-export const deleteFavorite = (recipe) => (dispatch) => {
-  const { favorites } = store.getState().app
+export const deleteFavoriteRecipe = (recipe) => (dispatch) => {
+  const { favoriteRecipes } = store.getState().app
 
-  const recipes = favorites.filter((r) => r.id !== recipe.id)
+  const recipes = favoriteRecipes.filter((r) => r.id !== recipe.id)
 
   setStorage(recipes)
 
-  dispatch(setFavorites(recipes))
+  dispatch(setFavoriteRecipes(recipes))
 }
 
 export const searchRecipes = (form) => async (dispatch) => {
   try {
+    dispatch(setMessage(''))
     dispatch(setLoading())
 
-    const result = await requestFetch(
-      `https://api.spoonacular.com/recipes/autocomplete?number=${form.quantity}&query=${form.query}&`
-    )
+    const result = await getFoundRecipes(form)
+
+    if (result.length === 0)
+      throw new Error('No results were found for this request')
 
     const processArray = async (result) => {
       const recipes = []
 
       for (const item of result) {
-        const recipe = await requestFetch(
-          `https://api.spoonacular.com/recipes/${item.id}/information?`
-        )
-
+        const recipe = await getRecipeInfo(item.id)
         recipes.push(recipe)
       }
 
@@ -56,6 +89,7 @@ export const searchRecipes = (form) => async (dispatch) => {
 
     processArray(result)
   } catch (err) {
-    console.log(err)
+    dispatch(setMessage(err.message))
+    dispatch(setLoading())
   }
 }

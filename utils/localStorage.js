@@ -1,4 +1,4 @@
-const nameStorage = 'favorites-recipes'
+const nameStorage = 'favorite-recipes'
 
 export const setStorage = (data) => {
   localStorage.setItem(nameStorage, JSON.stringify(data))

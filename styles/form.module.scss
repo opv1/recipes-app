@@ -6,7 +6,7 @@
   margin: 0.5rem;
   width: 100%;
 
-  input {
+  &__input {
     margin: 0.5rem;
     outline: none;
     border: 1px solid #eee;
@@ -29,12 +29,7 @@
     }
   }
 
-  &__block {
-    display: flex;
-    align-items: center;
-  }
-
-  button {
+  &__button {
     margin: 0.5rem;
     outline: none;
     border: none;

@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import Main from '../../components/main'
 import Recipe from '../../components/recipe'
-import { requestFetch } from '../../utils/requestFetch'
+import { getRecipeInfo } from '../../utils/requestFetch'
 
-const RecipePage = ({ data }) => {
-  const [recipe] = useState(data)
+const RecipePage = ({ serverData }) => {
+  const [recipe] = useState(serverData)
 
   return (
     <Main
@@ -20,8 +20,6 @@ const RecipePage = ({ data }) => {
 export default RecipePage
 
 export async function getServerSideProps({ params }) {
-  const res = await requestFetch(
-    `https://api.spoonacular.com/recipes/${params.id}/information?`
-  )
-  return { props: { data: res } }
+  const data = await getRecipeInfo(params.id)
+  return { props: { serverData: data } }
 }

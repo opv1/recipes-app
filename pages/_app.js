@@ -3,7 +3,7 @@ import { Provider, useDispatch } from 'react-redux'
 import { createWrapper } from 'next-redux-wrapper'
 import NextNprogress from 'nextjs-progressbar'
 import { store } from '../store/index'
-import { favoritesRecipes } from '../store/actions/appActions'
+import { selectedRecipes } from '../store/actions/appActions'
 import { getStorage } from '../utils/localStorage'
 import '../styles/globals.scss'
 
@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }) {
 
   useEffect(() => {
     const data = getStorage()
-    dispatch(favoritesRecipes(data))
+    dispatch(selectedRecipes(data))
   }, [])
 
   return (

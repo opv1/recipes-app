@@ -2,12 +2,15 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import { addFavorite, deleteFavorite } from '../store/actions/appActions'
+import {
+  addFavoriteRecipe,
+  deleteFavoriteRecipe,
+} from '../store/actions/appActions'
 import styles from '../styles/recipe.module.scss'
 
 const Recipe = ({ data }) => {
   const dispatch = useDispatch()
-  const { favorites } = useSelector((state) => state.app)
+  const { favoriteRecipes } = useSelector((state) => state.app)
   const [recipe, setRecipe] = useState(data)
   const [favorite, setFavorite] = useState(false)
   const path = useRouter()
@@ -15,16 +18,16 @@ const Recipe = ({ data }) => {
 
   const addInFavorite = (recipe) => {
     setFavorite(true)
-    dispatch(addFavorite(recipe))
+    dispatch(addFavoriteRecipe(recipe))
   }
 
   const removeFromFavorite = (recipe) => {
     setFavorite(false)
-    dispatch(deleteFavorite(recipe))
+    dispatch(deleteFavoriteRecipe(recipe))
   }
 
   useEffect(() => {
-    favorites.forEach((recipe) => {
+    favoriteRecipes.forEach((recipe) => {
       if (recipe.id === data.id) {
         setFavorite(true)
       }
@@ -66,6 +69,7 @@ const Recipe = ({ data }) => {
             </div>
             {recipe.instructions ? (
               <div className={styles.recipe__instructions}>
+                {/* <pre></pre> */}
                 {recipe.instructions.replace(
                   /(<ol>)|(<\/ol>)|(<li>)|(<\/li>)/gi,
                   ''
