@@ -5,13 +5,13 @@
 }
 
 body {
+  height: 100vh;
   font-family: 'Lato', 'Arial', 'Helvetica', sans-serif;
   background: #fff591;
 }
 
 #__next {
   margin: auto;
-  height: 100vh;
   min-width: 320px;
   max-width: 1600px;
 }
