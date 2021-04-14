@@ -1,8 +1,9 @@
+import React from 'react'
 import Link from 'next/link'
-import ActiveLink from './link'
-import styles from '../styles/header.module.scss'
+import ActiveLink from 'components/ActiveLink'
+import styles from 'styles/header.module.scss'
 
-const Header = () => {
+const Header: React.FC = () => {
   return (
     <header className={styles.header}>
       <Link href='/'>

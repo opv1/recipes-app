@@ -1,20 +1,21 @@
-import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { searchRecipes } from '../store/actions/appActions'
-import styles from '../styles/form.module.scss'
+import React, { useState } from 'react'
+import { useTypeSelector } from 'hooks/useTypeSelector'
+import { useActions } from 'hooks/useActions'
+import { FormType } from 'types'
+import styles from 'styles/form.module.scss'
 
-const Form = () => {
-  const dispatch = useDispatch()
-  const { loading } = useSelector((state) => state.app)
-  const [form, setForm] = useState({ query: '', quantity: '1' })
+const Form: React.FC = () => {
+  const [form, setForm] = useState<FormType>({ query: '', quantity: '1' })
+  const { loading } = useTypeSelector((state) => state.app)
+  const { searchRecipes } = useActions()
 
-  const handlerChange = (event) => {
+  const handlerChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [event.target.name]: event.target.value })
   }
 
-  const onSearchRecipes = (event) => {
+  const onSearchRecipes = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
-    dispatch(searchRecipes(form))
+    searchRecipes(form)
   }
 
   return (
@@ -36,12 +37,11 @@ const Form = () => {
         min='1'
         max='25'
         placeholder='Quantity'
-        required
       />
       <button
         className={styles.form__button}
         onClick={onSearchRecipes}
-        disabled={!form.query || loading}
+        disabled={!form.query || !form.quantity || loading}
       >
         Search
       </button>

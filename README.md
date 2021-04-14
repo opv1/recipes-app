@@ -5,6 +5,6 @@
 
 ## Description
 
-Stack: Next + Redux
+Stack: Next + Redux + TypeScript
 
 ## [See the project](https://recipes-app-six.vercel.app)

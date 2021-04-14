@@ -1,4 +1,6 @@
-const requestFetch = async (url) => {
+import { RecipeType, FormType } from 'types'
+
+const requestFetch = async (url: string) => {
   try {
     const res = await fetch(`${url}apiKey=${process.env.NEXT_PUBLIC_API_KEY}`)
     const data = await res.json()
@@ -13,7 +15,7 @@ const requestFetch = async (url) => {
   }
 }
 
-export const getRandomRecipe = async () => {
+export const getRandomRecipe = async (): Promise<RecipeType> => {
   try {
     const res = await requestFetch(
       `https://api.spoonacular.com/recipes/random?`
@@ -24,18 +26,18 @@ export const getRandomRecipe = async () => {
   }
 }
 
-export const getRecipeList = async (number) => {
+export const getRecipeList = async (number: number): Promise<RecipeType[]> => {
   try {
     const res = await requestFetch(
       `https://api.spoonacular.com/recipes/random?number=${number}&`
     )
     return res.recipes
-  } catch (error) {
+  } catch (err) {
     throw err
   }
 }
 
-export const getFoundRecipes = async (form) => {
+export const getFoundRecipes = async (form: FormType): Promise<any[]> => {
   try {
     const res = await requestFetch(
       `https://api.spoonacular.com/recipes/autocomplete?number=${form.quantity}&query=${form.query}&`
@@ -46,7 +48,7 @@ export const getFoundRecipes = async (form) => {
   }
 }
 
-export const getRecipeInfo = async (id) => {
+export const getRecipeInfo = async (id: string): Promise<RecipeType> => {
   try {
     const res = await requestFetch(
       `https://api.spoonacular.com/recipes/${id}/information?`

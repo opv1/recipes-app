@@ -1,19 +1,21 @@
-import { store } from '../index'
+import { Dispatch } from 'redux'
+import { store } from 'store/index'
 import {
   setLoading,
   setMessage,
   setFavoriteRecipes,
   setFoundRecipes,
-} from '../actionCreators/app'
-import { setStorage } from '../../utils/localStorage'
+} from 'store/actionCreators/app'
+import { setStorage } from 'utils/localStorage'
 import {
   getRandomRecipe,
   getRecipeList,
   getFoundRecipes,
   getRecipeInfo,
-} from '../../utils/requestFetch'
+} from 'utils/requestFetch'
+import { RecipeType, FormType } from 'types'
 
-export const refreshRecipe = () => async (dispatch) => {
+export const refreshRecipe = () => async (dispatch: Dispatch) => {
   try {
     dispatch(setLoading())
 
@@ -27,7 +29,7 @@ export const refreshRecipe = () => async (dispatch) => {
   }
 }
 
-export const newRecipes = () => async (dispatch) => {
+export const newRecipes = () => async (dispatch: Dispatch) => {
   try {
     dispatch(setLoading())
 
@@ -41,11 +43,15 @@ export const newRecipes = () => async (dispatch) => {
   }
 }
 
-export const selectedRecipes = (recipes) => (dispatch) => {
+export const selectedRecipes = (recipes: RecipeType[]) => (
+  dispatch: Dispatch
+) => {
   dispatch(setFavoriteRecipes(recipes))
 }
 
-export const addFavoriteRecipe = (recipe) => (dispatch) => {
+export const addFavoriteRecipe = (recipe: RecipeType) => (
+  dispatch: Dispatch
+) => {
   const { favoriteRecipes } = store.getState().app
 
   const recipes = [...favoriteRecipes, recipe]
@@ -55,17 +61,19 @@ export const addFavoriteRecipe = (recipe) => (dispatch) => {
   dispatch(setFavoriteRecipes(recipes))
 }
 
-export const deleteFavoriteRecipe = (recipe) => (dispatch) => {
+export const deleteFavoriteRecipe = (recipe: RecipeType) => (
+  dispatch: Dispatch
+) => {
   const { favoriteRecipes } = store.getState().app
 
-  const recipes = favoriteRecipes.filter((r) => r.id !== recipe.id)
+  const recipes = favoriteRecipes.filter((r: RecipeType) => r.id !== recipe.id)
 
   setStorage(recipes)
 
   dispatch(setFavoriteRecipes(recipes))
 }
 
-export const searchRecipes = (form) => async (dispatch) => {
+export const searchRecipes = (form: FormType) => async (dispatch: Dispatch) => {
   try {
     dispatch(setMessage(''))
     dispatch(setLoading())
@@ -75,7 +83,7 @@ export const searchRecipes = (form) => async (dispatch) => {
     if (result.length === 0)
       throw new Error('No results were found for this request')
 
-    const processArray = async (result) => {
+    const processArray = async (result: any[]) => {
       const recipes = []
 
       for (const item of result) {

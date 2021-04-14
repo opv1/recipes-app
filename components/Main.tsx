@@ -1,8 +1,10 @@
+import React from 'react'
 import Head from 'next/head'
-import Header from './header'
-import styles from '../styles/main.module.scss'
+import Header from 'components/Header'
+import { IMainProps } from 'interfaces'
+import styles from 'styles/main.module.scss'
 
-const Main = ({ page, keywords, title, children }) => {
+const Main: React.FC<IMainProps> = ({ page, keywords, title, children }) => {
   return (
     <>
       <Head>

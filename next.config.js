@@ -1,11 +1,9 @@
-const dotenv = require('dotenv-webpack')
+require('dotenv').config()
 
 module.exports = {
-  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-    config.plugins.push(new dotenv({ silent: true }))
-    return config
+  typescript: {
+    ignoreBuildErrors: true,
   },
-
   env: {
     NEXT_PUBLIC_API_KEY: process.env.NEXT_PUBLIC_API_KEY,
   },

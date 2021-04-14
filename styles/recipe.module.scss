@@ -29,7 +29,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1rem;
     min-height: 90px;
 
     span {
@@ -46,6 +45,7 @@
 
   &__image {
     position: relative;
+    margin: 1rem 0;
     height: 370px;
 
     img {
@@ -81,7 +81,7 @@
 
   &__info {
     display: flex;
-    margin-top: 1rem;
+    align-items: center;
 
     div {
       display: flex;
@@ -93,7 +93,12 @@
 
   &__instructions {
     display: flex;
+    align-items: center;
     margin: 1rem 0;
     font-size: 1.2rem;
+
+    ol {
+      margin: 0;
+    }
   }
 }
