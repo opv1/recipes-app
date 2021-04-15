@@ -1,4 +1,6 @@
+@import 'styles/variables';
+
 .message {
   font-size: 2rem;
-  color: #ac1e1e;
+  color: $redColor;
 }

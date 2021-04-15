@@ -7,4 +7,4 @@
 
 Stack: Next + Redux + TypeScript
 
-## [See the project](https://recipes-app-six.vercel.app)
+## [See the project](https://recipes-app-opv1.vercel.app)

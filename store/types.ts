@@ -2,6 +2,7 @@ import { RecipeType } from 'types'
 
 export type AppState = {
   loading: boolean
+  sidedrawer: boolean
   message: string
   favoriteRecipes: RecipeType[]
   foundRecipes: RecipeType[]
@@ -9,6 +10,7 @@ export type AppState = {
 
 export enum AppActionTypes {
   SET_LOADING = 'SET_LOADING',
+  SET_SIDEDRAWER = 'SET_SIDEDRAWER',
   SET_MESSAGE = 'SET_MESSAGE',
   SET_FAVORITE_RECIPES = 'SET_FAVORITE_RECIPES',
   ADD_FAVORITE_RECIPE = 'ADD_FAVORITE_RECIPE',
@@ -18,6 +20,10 @@ export enum AppActionTypes {
 
 interface ISetLoading {
   type: AppActionTypes.SET_LOADING
+}
+
+interface ISetSidedrawer {
+  type: AppActionTypes.SET_SIDEDRAWER
 }
 
 interface ISetMessage {
@@ -47,6 +53,7 @@ interface ISetFoundRecipes {
 
 export type AppAction =
   | ISetLoading
+  | ISetSidedrawer
   | ISetMessage
   | ISetFavoriteRecipes
   | IAddFavoriteRecipe

@@ -1,3 +1,5 @@
+@import 'styles/variables';
+
 .main {
   display: flex;
   flex-direction: column;
@@ -19,22 +21,23 @@
     letter-spacing: 1px;
     text-align: center;
     text-transform: uppercase;
-    color: #535177;
+    color: $blackColor;
   }
 
   button {
+    @include transition(transform);
+
     outline: none;
     border: none;
     border-radius: 5px;
     padding: 1rem;
     font-size: 1.1rem;
-    color: #fff;
-    background: #ff8a5c;
-    transition: transform 0.3s;
+    color: $whiteColor;
+    background: $orangeColor;
     cursor: pointer;
 
     &:hover {
-      transform: scale(1.1);
+      @include transform(scale(1.1));
     }
   }
 }

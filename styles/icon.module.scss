@@ -1,0 +1,63 @@
+@import 'styles/variables';
+
+.icon {
+  position: relative;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+
+  &__burger {
+    border-radius: 5px;
+    width: 30px;
+    height: 6px;
+    background: $redColor;
+
+    &::before,
+    &::after {
+      @include transition(transform);
+
+      content: '';
+      position: absolute;
+      border-radius: 5px;
+      width: 30px;
+      height: 6px;
+      background: $redColor;
+    }
+
+    &::before {
+      @include transform(translateY(-10px));
+    }
+
+    &::after {
+      @include transform(translateY(10px));
+    }
+  }
+
+  &__open {
+    .icon__burger {
+      background: transparent;
+
+      &::before {
+        @include transform(rotate(45deg));
+
+        background: $whiteColor;
+      }
+
+      &::after {
+        @include transform(rotate(-45deg));
+
+        background: $whiteColor;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .icon {
+    display: none;
+  }
+}

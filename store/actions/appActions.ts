@@ -2,6 +2,7 @@ import { Dispatch } from 'redux'
 import { store } from 'store/index'
 import {
   setLoading,
+  setSidedrawer,
   setMessage,
   setFavoriteRecipes,
   setFoundRecipes,
@@ -14,6 +15,10 @@ import {
   getRecipeInfo,
 } from 'utils/requestFetch'
 import { RecipeType, FormType } from 'types'
+
+export const displaySidedrawer = () => (dispatch: Dispatch) => {
+  dispatch(setSidedrawer())
+}
 
 export const refreshRecipe = () => async (dispatch: Dispatch) => {
   try {

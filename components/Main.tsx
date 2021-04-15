@@ -1,10 +1,14 @@
 import React from 'react'
 import Head from 'next/head'
+import { useTypeSelector } from 'hooks/useTypeSelector'
 import Header from 'components/Header'
+import Sidedrawer from 'components/Sidedrawer'
 import { IMainProps } from 'interfaces'
 import styles from 'styles/main.module.scss'
 
 const Main: React.FC<IMainProps> = ({ page, keywords, title, children }) => {
+  const { sidedrawer } = useTypeSelector((state) => state.app)
+
   return (
     <>
       <Head>
@@ -34,6 +38,7 @@ const Main: React.FC<IMainProps> = ({ page, keywords, title, children }) => {
           {children}
         </section>
       </main>
+      {sidedrawer && <Sidedrawer />}
     </>
   )
 }

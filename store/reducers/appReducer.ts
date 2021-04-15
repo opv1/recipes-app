@@ -2,6 +2,7 @@ import { AppState, AppAction, AppActionTypes } from 'store/types'
 
 const initialState: AppState = {
   loading: false,
+  sidedrawer: false,
   message: '',
   favoriteRecipes: [],
   foundRecipes: [],
@@ -16,6 +17,11 @@ export const appReducer = (
       return {
         ...state,
         loading: !state.loading,
+      }
+    case AppActionTypes.SET_SIDEDRAWER:
+      return {
+        ...state,
+        sidedrawer: !state.sidedrawer,
       }
     case AppActionTypes.SET_MESSAGE:
       return {

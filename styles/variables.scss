@@ -1,0 +1,19 @@
+$yellowColor: #fff591;
+$redColor: #e41749;
+$orangeColor: #ff8a5c;
+$blackColor: #333242;
+$whiteColor: #fff;
+$greyColor: #c7bfb6;
+
+@mixin transition($property) {
+  transition-property: $property;
+  transition-duration: 0.3s;
+}
+
+@mixin transform($property) {
+  transform: $property;
+}
+
+@function focusColor($color) {
+  @return darken($color, 5%);
+}

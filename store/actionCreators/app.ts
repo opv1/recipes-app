@@ -5,6 +5,10 @@ export const setLoading = (): AppAction => ({
   type: AppActionTypes.SET_LOADING,
 })
 
+export const setSidedrawer = (): AppAction => ({
+  type: AppActionTypes.SET_SIDEDRAWER,
+})
+
 export const setMessage = (message: string): AppAction => ({
   type: AppActionTypes.SET_MESSAGE,
   payload: message,

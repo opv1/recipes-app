@@ -1,3 +1,5 @@
+@import 'styles/variables';
+
 .notfound {
   display: flex;
   flex-direction: column;
@@ -13,16 +15,17 @@
   }
 
   a {
+    @include transition(transform);
+
     border-radius: 5px;
     padding: 1rem;
     font-size: 2rem;
     text-decoration: none;
-    color: #fff;
-    background: #e41749;
-    transition: transform 0.3s;
+    color: $whiteColor;
+    background: $redColor;
 
     &:hover {
-      transform: scale(1.1);
+      @include transform(scale(1.1));
     }
   }
 }

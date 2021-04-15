@@ -26,6 +26,10 @@ export interface IMessageProps {
   message: string
 }
 
+export interface INavProps {
+  className: string
+}
+
 export interface IHomePageProps {
   serverData: RecipeType | object
   serverError: string

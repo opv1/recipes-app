@@ -1,3 +1,5 @@
+@import 'styles/variables';
+
 .error {
   display: flex;
   flex-direction: column;
@@ -9,5 +11,6 @@
     margin: 0;
     font-size: 5rem;
     text-align: center;
+    color: $blackColor;
   }
 }
