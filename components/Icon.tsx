@@ -10,7 +10,7 @@ const Icon: React.FC = () => {
   return (
     <div
       className={
-        sidedrawer ? `${styles.icon__open} ${styles.icon}` : styles.icon
+        sidedrawer ? `${styles.icon} ${styles.icon_open}` : styles.icon
       }
       onClick={displaySidedrawer}
     >

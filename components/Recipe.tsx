@@ -40,7 +40,10 @@ const Recipe: React.FC<IRecipeProps> = ({ data }) => {
   }, [data])
 
   return (
-    <div className={styles.recipe}>
+    <div
+      className={styles.recipe}
+      style={recipePage ? { maxWidth: '700px' } : {}}
+    >
       <div className={styles.recipe__container}>
         <Link href={`/recipes/${recipe.id}`}>
           <div className={styles.recipe__title}>
@@ -79,6 +82,7 @@ const Recipe: React.FC<IRecipeProps> = ({ data }) => {
               <div className={styles.recipe__instructions}>No instructions</div>
             )}
             <a
+              className={styles.recipe__source}
               href={recipe.spoonacularSourceUrl}
               target='_blank'
               rel='noopener noreferrer'

@@ -1,27 +1,19 @@
 @import 'styles/variables';
 
 .sidedrawer {
-  position: absolute;
-  left: 0;
+  @include transition(transform);
+  @include transform(translateX(100%));
+
+  position: fixed;
   right: 0;
   top: 0;
-  bottom: 0;
-  z-index: 100;
+  z-index: 500;
+  width: 55%;
   min-height: 100vh;
-  max-height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-
-  &__block {
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 60%;
-    height: 100%;
-    background: $redColor;
-  }
+  background: $redColor;
 
   &__nav {
-    height: 100%;
+    min-height: 100vh;
 
     ul {
       flex-direction: column;
@@ -34,5 +26,9 @@
         }
       }
     }
+  }
+
+  &_open {
+    @include transform(translateX(0));
   }
 }

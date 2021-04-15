@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
-import { Provider, useDispatch } from 'react-redux'
+import { Provider } from 'react-redux'
 import type { AppProps } from 'next/app'
 import { createWrapper } from 'next-redux-wrapper'
 import NextNprogress from 'nextjs-progressbar'
+import { useActions } from 'hooks/useActions'
 import { store } from 'store/index'
-import { selectedRecipes } from 'store/actions/appActions'
 import { getStorage } from 'utils/localStorage'
 import 'styles/globals.scss'
 
@@ -12,11 +12,11 @@ const makeStore = () => store
 const wrapper = createWrapper(makeStore)
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
-  const dispatch = useDispatch()
+  const { selectedRecipes } = useActions()
 
   useEffect(() => {
     const data = getStorage()
-    dispatch(selectedRecipes(data))
+    selectedRecipes(data)
   }, [])
 
   return (

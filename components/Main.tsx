@@ -2,6 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 import { useTypeSelector } from 'hooks/useTypeSelector'
 import Header from 'components/Header'
+import Backdrop from 'components/Backdrop'
 import Sidedrawer from 'components/Sidedrawer'
 import { IMainProps } from 'interfaces'
 import styles from 'styles/main.module.scss'
@@ -38,7 +39,8 @@ const Main: React.FC<IMainProps> = ({ page, keywords, title, children }) => {
           {children}
         </section>
       </main>
-      {sidedrawer && <Sidedrawer />}
+      {sidedrawer && <Backdrop />}
+      <Sidedrawer />
     </>
   )
 }

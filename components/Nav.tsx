@@ -5,7 +5,7 @@ import styles from 'styles/nav.module.scss'
 
 const Nav: React.FC<INavProps> = ({ className }) => {
   return (
-    <nav className={`${className} ${styles.nav}`}>
+    <nav className={`${styles.nav} ${className}`}>
       <ul className={styles.nav__list}>
         <li className={styles.nav__item}>
           <ActiveLink activeClassName={styles.nav__link_active} href='/recipes'>

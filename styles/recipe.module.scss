@@ -38,6 +38,7 @@
 
       font-size: 1.5rem;
       text-align: center;
+      color: $blackColor;
       cursor: pointer;
 
       &:hover {
@@ -93,6 +94,7 @@
       flex-direction: column;
       align-items: center;
       margin: 0 0.5rem;
+      color: $blackColor;
     }
   }
 
@@ -103,7 +105,48 @@
     font-size: 1.2rem;
 
     ol {
+      counter-reset: num;
+      list-style: none;
       margin: 0;
+
+      li {
+        position: relative;
+        color: $blackColor;
+
+        &::before {
+          counter-increment: num;
+          content: counter(num);
+          position: absolute;
+          left: -35px;
+          top: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          padding: 0.3rem;
+          width: 15px;
+          height: 15px;
+          text-align: center;
+          color: $whiteColor;
+          background: $redColor;
+        }
+
+        &:not(:last-child) {
+          margin-bottom: 1rem;
+        }
+      }
+    }
+  }
+
+  &__source {
+    @include transition(color);
+
+    font-weight: 700;
+    text-decoration: none;
+    color: $blackColor;
+
+    &:hover {
+      color: $redColor;
     }
   }
 }
