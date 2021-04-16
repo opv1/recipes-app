@@ -1,23 +1,10 @@
-import React, { useEffect } from 'react'
-import { GetServerSideProps } from 'next'
-import { useRouter } from 'next/router'
+import { NextPage, GetServerSideProps } from 'next'
 import Main from 'components/Main'
 import Recipe from 'components/Recipe'
 import { getRecipeInfo } from 'utils/requestFetch'
 import { IRecipePageProps } from 'interfaces'
 
-const RecipePage: React.FC<IRecipePageProps> = ({
-  serverData,
-  serverError,
-}) => {
-  const router = useRouter()
-
-  useEffect(() => {
-    if (serverError) {
-      router.push('/error')
-    }
-  }, [])
-
+const RecipePage: NextPage<IRecipePageProps> = ({ serverData }) => {
   return (
     <Main
       page={'Recipe'}
@@ -36,6 +23,6 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     const data = await getRecipeInfo(params!.id as string)
     return { props: { serverData: data } }
   } catch (err) {
-    return { props: { serverData: {}, serverError: err.message } }
+    return { props: { serverError: { statusCode: 500, msg: err.message } } }
   }
 }

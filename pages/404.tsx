@@ -1,8 +1,8 @@
-import React from 'react'
+import { NextPage } from 'next'
 import Link from 'next/link'
 import styles from 'styles/notfound.module.scss'
 
-const ErrorPage: React.FC = () => {
+const Custom404: NextPage = () => {
   return (
     <div className={styles.notfound}>
       <h1>Error | 404</h1>
@@ -13,4 +13,4 @@ const ErrorPage: React.FC = () => {
   )
 }
 
-export default ErrorPage
+export default Custom404

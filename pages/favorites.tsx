@@ -1,10 +1,10 @@
-import React from 'react'
+import { NextPage } from 'next'
 import { useTypeSelector } from 'hooks/useTypeSelector'
 import Main from 'components/Main'
 import List from 'components/List'
 import Message from 'components/Message'
 
-const Favorites: React.FC = () => {
+const Favorites: NextPage = () => {
   const { favoriteRecipes } = useTypeSelector((state) => state.app)
 
   return (

@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { GetStaticProps } from 'next'
-import { useRouter } from 'next/router'
+import { useState } from 'react'
+import { NextPage, GetStaticProps } from 'next'
 import { useTypeSelector } from 'hooks/useTypeSelector'
 import { useActions } from 'hooks/useActions'
 import Main from 'components/Main'
@@ -10,22 +9,15 @@ import { getRandomRecipe } from 'utils/requestFetch'
 import { IHomePageProps } from 'interfaces'
 import { RecipeType } from 'types'
 
-const HomePage: React.FC<IHomePageProps> = ({ serverData, serverError }) => {
+const HomePage: NextPage<IHomePageProps> = ({ serverData }) => {
   const [recipe, setRecipe] = useState<RecipeType>(serverData)
   const { loading } = useTypeSelector((state) => state.app)
   const { refreshRecipe } = useActions()
-  const router = useRouter()
 
   const onRefreshRecipe = async () => {
     const recipe = await refreshRecipe()
     setRecipe(recipe)
   }
-
-  useEffect(() => {
-    if (serverError) {
-      router.push('/error')
-    }
-  }, [])
 
   return (
     <Main page={'Home'} keywords='random recipe' title='random recipe'>
@@ -48,8 +40,10 @@ export default HomePage
 export const getStaticProps: GetStaticProps = async (context) => {
   try {
     const data = await getRandomRecipe()
-    return { props: { serverData: data } }
+    return {
+      props: { serverData: data },
+    }
   } catch (err) {
-    return { props: { serverData: {}, serverError: err.message } }
+    return { props: { serverError: { statusCode: 500, msg: err.message } } }
   }
 }

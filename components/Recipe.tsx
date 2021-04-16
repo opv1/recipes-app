@@ -25,8 +25,8 @@ const Recipe: React.FC<IRecipeProps> = ({ data }) => {
     deleteFavoriteRecipe(recipe)
   }
 
-  const createMarkup = () => {
-    return { __html: recipe.instructions }
+  const createMarkup = (html: any) => {
+    return { __html: html }
   }
 
   useEffect(() => {
@@ -76,7 +76,7 @@ const Recipe: React.FC<IRecipeProps> = ({ data }) => {
             {recipe.instructions ? (
               <div
                 className={styles.recipe__instructions}
-                dangerouslySetInnerHTML={createMarkup()}
+                dangerouslySetInnerHTML={createMarkup(recipe.instructions)}
               />
             ) : (
               <div className={styles.recipe__instructions}>No instructions</div>

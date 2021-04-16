@@ -32,7 +32,7 @@ export interface INavProps {
 
 export interface IHomePageProps {
   serverData: RecipeType | object
-  serverError: string
+  serverError: { [key: string]: string }
 }
 
 export interface IRecipesPageProps {

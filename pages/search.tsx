@@ -1,4 +1,4 @@
-import React from 'react'
+import { NextPage } from 'next'
 import { useTypeSelector } from 'hooks/useTypeSelector'
 import Main from 'components/Main'
 import Form from 'components/Form'
@@ -6,7 +6,7 @@ import Message from 'components/Message'
 import List from 'components/List'
 import Loader from 'components/Loader'
 
-const Search: React.FC = () => {
+const Search: NextPage = () => {
   const { loading, message, foundRecipes } = useTypeSelector(
     (state) => state.app
   )

@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { GetStaticProps } from 'next'
-import { useRouter } from 'next/router'
+import { useState } from 'react'
+import { NextPage, GetStaticProps } from 'next'
 import { useTypeSelector } from 'hooks/useTypeSelector'
 import { useActions } from 'hooks/useActions'
 import Main from 'components/Main'
@@ -10,25 +9,15 @@ import { getRecipeList } from 'utils/requestFetch'
 import { IRecipesPageProps } from 'interfaces'
 import { RecipeType } from 'types'
 
-const RecipesPage: React.FC<IRecipesPageProps> = ({
-  serverData,
-  serverError,
-}) => {
+const RecipesPage: NextPage<IRecipesPageProps> = ({ serverData }) => {
   const [recipes, setRecipes] = useState<RecipeType[]>(serverData)
   const { loading } = useTypeSelector((state) => state.app)
   const { newRecipes } = useActions()
-  const router = useRouter()
 
   const onNewRecipes = async () => {
     const recipes = await newRecipes()
     setRecipes((prev) => [...prev, ...recipes])
   }
-
-  useEffect(() => {
-    if (serverError) {
-      router.push('/error')
-    }
-  }, [])
 
   return (
     <Main page={'List'} keywords='recipe list' title='recipe list'>
@@ -51,6 +40,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
     const data = await getRecipeList(5)
     return { props: { serverData: data } }
   } catch (err) {
-    return { props: { serverData: [], serverError: err.message } }
+    return { props: { serverError: { statusCode: 500, msg: err.message } } }
   }
 }
