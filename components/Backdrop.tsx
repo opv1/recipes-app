@@ -4,7 +4,6 @@ import styles from 'styles/backdrop.module.scss'
 
 const Backdrop: React.FC = () => {
   const { displaySidedrawer } = useActions()
-  console.log('dadas')
 
   return (
     <div
