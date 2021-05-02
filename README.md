@@ -7,4 +7,6 @@
 
 Stack: Next + Redux + TypeScript
 
+API: [Spoonacular](https://spoonacular.com/food-api)
+
 ## [See the project](https://recipes-app-opv1.vercel.app)
