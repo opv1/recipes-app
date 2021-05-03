@@ -100,6 +100,7 @@
 
   &__instructions {
     display: flex;
+    flex-direction: column;
     align-items: center;
     margin: 1rem 0;
     font-size: 1.2rem;
