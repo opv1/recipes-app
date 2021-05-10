@@ -9,4 +9,4 @@
 
 Stack: Next + Redux + TypeScript
 
-API: [Spoonacular](https://spoonacular.com/food-api)
+API: [Spoonacular](https://spoonacular.com)
