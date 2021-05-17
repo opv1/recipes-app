@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { NextPage, GetStaticProps } from 'next'
 import { useTypeSelector } from 'hooks/useTypeSelector'
 import { useActions } from 'hooks/useActions'
@@ -11,6 +11,7 @@ import { RecipeType } from 'types'
 
 const RecipesPage: NextPage<IRecipesPageProps> = ({ serverData }) => {
   const [recipes, setRecipes] = useState<RecipeType[]>(serverData)
+  const divRef = useRef<HTMLDivElement>(null)
   const { loading } = useTypeSelector((state) => state.app)
   const { newRecipes } = useActions()
 
@@ -19,16 +20,27 @@ const RecipesPage: NextPage<IRecipesPageProps> = ({ serverData }) => {
     setRecipes((prev) => [...prev, ...recipes])
   }
 
+  const handlerScroll = () => {
+    if (divRef.current) {
+      const divOffset = divRef.current.offsetTop + divRef.current.clientHeight
+      const pageOffset = window.pageYOffset + window.innerHeight
+
+      if (!loading && pageOffset > divOffset) onNewRecipes()
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', handlerScroll)
+
+    return () => {
+      window.removeEventListener('scroll', handlerScroll)
+    }
+  })
+
   return (
     <Main page={'List'} keywords='recipe list' title='recipe list'>
       <List recipes={recipes} />
-      {loading ? (
-        <Loader />
-      ) : (
-        <div style={{ display: 'flex', alignItems: 'center', height: '80px' }}>
-          <button onClick={onNewRecipes}>More recipes</button>
-        </div>
-      )}
+      {loading ? <Loader /> : <div ref={divRef}></div>}
     </Main>
   )
 }
