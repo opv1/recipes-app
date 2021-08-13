@@ -11,7 +11,7 @@
     "@types/node": "^15.6.1",
     "@types/react": "^17.0.8",
     "dotenv": "^10.0.0",
-    "next": "10.2.3",
+    "next": "11.1.0",
     "next-redux-wrapper": "^6.0.2",
     "nextjs-progressbar": "^0.0.10",
     "normalize.css": "^8.0.1",
